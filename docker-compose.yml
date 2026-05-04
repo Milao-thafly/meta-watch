@@ -8,7 +8,7 @@ services:
       MYSQL_USER: db_user
       MYSQL_PASSWORD: "!ChangeMe!"
       MYSQL_DATABASE: app
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: db_password
     volumes:
       - database_data:/var/lib/mysql:rw
 
