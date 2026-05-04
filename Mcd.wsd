@@ -1,0 +1,44 @@
+@startuml ListCreationDiagram
+left to right direction
+skinparam packageStyle rect
+
+actor "User" as user
+actor "Player" as player
+actor "Admin" as admin
+
+
+
+rectangle metawatch {
+    (photos_user)
+    (photos)
+    (tournament)
+    (listcreation)
+    (faction)
+    (unit)
+    (detachment)
+    (melee_weapon)
+    (ranged_weapon)
+    (stats)
+
+
+    (Modérer Utilisateurs) as moderate
+    (Organiser Tournoi) as org_tournament
+
+    admin -- moderate
+    user -- (listcreation)
+    user -- (photos_user)
+    player --|> user
+    user -- (org_tournament)
+    player -- (tournament)
+    
+    
+    (listcreation) ..> (faction) : <<include>>
+    (photos_user) ..> (photos): <<include>>
+    (faction) ..> (unit)
+    (faction) ..> (detachment)
+    (unit) ..> (melee_weapon) : <<include>>
+    (unit) ..> (ranged_weapon) : <<include>>
+    (unit) ..> (stats)
+    (org_tournament) ..> tournament : <<include>>
+}
+@enduml

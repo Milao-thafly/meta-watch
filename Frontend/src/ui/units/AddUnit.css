@@ -1,0 +1,21 @@
+.register_page{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.register_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2vh;
+    width: 80%;
+    height: 60%;
+    background-color: #EBE3DB;
+}
+.title_reg{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

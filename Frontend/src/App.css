@@ -1,0 +1,49 @@
+@font-face{
+    font-family: Lora_bold;
+    src: url('../../../public/fonts/Google_Sans,Lora/Lora/static/Lora-Bold.ttf');
+    font-family: Lora;
+    src: url('../../../public/fonts/Google_Sans,Lora/Lora/static/Lora-Medium.ttf');
+}
+.navbar{
+    font-family: 'Lora';
+    width: 100%;
+    height: 12.79vh;
+    background-color: #EBE3DB;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 2rem ;
+    font-size: 3vw;
+    flex-shrink: 0
+}
+.body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.login_icon{
+    height: 3rem;
+    width: 3rem;
+    
+}
+.metawatch_logo{
+    height: 5rem;
+    width: 5rem;
+}
+.body{
+    height: auto;
+    background-color: #000000d9;
+
+}
+.footer{
+    width: 100%;
+    height: 148px;
+    background-color: #EBE3DB;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 2rem ;
+    font-size: 3vw;  
+}

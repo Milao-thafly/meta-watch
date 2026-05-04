@@ -1,0 +1,32 @@
+name: meta-watch
+services:
+  database:
+    image: mysql:8.0
+    ports:
+      - "3309:3306" 
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: meta-watch
+      MYSQL_USER: fabius
+      MYSQL_PASSWORD: lol
+    volumes:
+      - database_data:/var/lib/mysql:rw
+
+  backend: 
+    build: ./Backend
+    volumes: 
+      - ./Backend:/var/www/html
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./Frontend
+    volumes:
+      - ./Frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    
+volumes:
+
+  database_data:

@@ -1,0 +1,15 @@
+.add_button{
+    width: 28vw;
+        max-width: 499px; 
+        height: 10.03vh;
+        background-color: #B6B272;
+        border-radius: 25px;
+        color: #D8D8D8;
+        font-size: 1.5rem; 
+        margin: 80px 5vw; 
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border: none;
+}

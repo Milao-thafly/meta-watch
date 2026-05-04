@@ -1,0 +1,753 @@
+@font-face{
+    font-family: Lora_bold;
+    src: url('../../../public/fonts/Google_Sans,Lora/Lora/static/Lora-Bold.ttf');
+    font-family: Lora;
+    src: url('../../../public/fonts/Google_Sans,Lora/Lora/static/Lora-Medium.ttf');
+}
+/**
+*   * 1 incrementation desktop
+** 0 incrementation mobile.
+*   More you incrementation you have bigger is the screen.
+*   Background-Colors: BTN#B6B272, Backgroundtxt#2A2A2A70,                    *    fabius-rectangle#6B0C0C, guil-rectangle#364957, Nec-rectangle#183210,
+*   knight-rectangle#C5D1D5, list-rect#C6D5C5, tourna-rect#C4D29C, 
+*   photos-rect#9C9951
+*/ 
+    .title_page{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 3;
+    }
+    .carousel_section{
+        overflow: hidden;
+    }
+    .carousel_action{
+        display: flex;
+        width: 400%;
+        transition: transform 0.5s ease-in-out;
+    }
+    .carousel_meta{
+        flex: 0 0 100vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 100%;
+        position: relative;
+        height: calc(100vh - 12.79vh);
+        overflow: hidden;
+        grid-template-columns: minmax(300px, 1fr) 1fr;
+    }
+    .list_scroll{
+        position: relative;
+        height: calc(100vh - 12.79vh);
+        height: 100vh;
+        overflow: hidden;
+    }
+    .tournament_scroll{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
+    .photos_scroll{
+    display: grid;
+        grid-template-columns: 1fr 1fr; 
+        height: calc(100vh - 148px);
+        overflow: hidden;
+
+    }
+    .activ_brain{
+        width: 95%;
+        padding:  1vh 0;
+    }
+    .activ_brain_scroll{
+        position: absolute;
+        width: 80%;
+        justify-self: start;
+        z-index: 3;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .activ_brain_photos{
+        width: 95%;
+        align-self: end;
+        padding:  1vh 0;
+    }
+    .textual_area{
+        height: calc(100vh - 148px);
+        width: auto;
+        display: flex;
+        align-items:start;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    .textual_area_tournament{
+        height: calc(100vh - 148px);
+        width: auto;
+        padding: 0vh 2vw;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    .textual_tournament{
+        display: flex;
+        font-family: "Lora";
+        color: white;
+        margin: 0 auto;
+        padding-bottom: 4.5vh;
+        white-space: pre-wrap;
+        font-size: clamp(2rem, 3vh, 4rem);
+    }
+    .textual_area_scroll{
+        width: auto;
+        display: flex;
+    }
+    .button{
+        width: 28vw;
+        max-width: 499px; 
+        height: 10.03vh;
+        background-color: #B6B272;
+        border-radius: 25px;
+        color: #D8D8D8;
+        font-size: 1.5rem; 
+        margin: 80px 5vw; 
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border: none;
+    }
+    .button_tournament{
+        width: 28vw;
+        height: 10.03vh;
+        background-color: #B6B272;
+        border-radius: 25px;
+        color: #D8D8D8;
+        font-size: 1.5rem; 
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border: none;
+    }
+    .button_tournament_mobile{
+        display: none;
+    }
+    .button_photos{
+        width: 28vw;
+        height: 10.03vh;
+        background-color: #B6B272;
+        border-radius: 25px;
+        color: #D8D8D8;
+        font-size: 1.5rem; 
+        border: none;
+    }
+    .button_list{
+        width: 28vw;
+        height: 10.03vh;
+        background-color: #B6B272;
+        border-radius: 25px;
+        color: #D8D8D8;
+        font-size: 1.5rem; 
+        border: none;
+        margin-top: 45vh;
+    }
+    .div_btn_list_mob{
+    display: none;
+    }
+    .visual{
+    display: flex;
+    justify-content: end;
+    overflow: hidden;
+    }
+    .visual_tournament{
+    overflow: hidden;  
+    }
+    .carousel_textuals{
+        width: 100%;
+        max-width: 863px;
+        background-color: #2A2A2A70;
+        border: 1px solid #999999;
+        border-radius: 5px;
+        margin-left: 3vh;
+    }
+    .carousel_textuals_list{
+        width: 100%;
+        max-width: 863px;
+        height: 100%;
+        background-color: #2A2A2A70;
+        border: 1px solid #999999;
+        border-radius: 5px;
+        margin-left: 3vh;
+    }
+    .photos_textuals{
+        display: flex;
+        justify-content: center;
+        background-color: #2A2A2A70;
+        border: 1px solid #999999;
+        border-radius: 5px; 
+        align-items: center;
+    }
+    .carousel_title{
+        font-family: 'Lora_bold';
+        font-size: clamp(3rem, 5.4vw, 6rem);
+        color: #C1D07F;
+        overflow-wrap: break-word;
+        margin: 0 4.4vh;
+    }
+    .carousel_title_mobile{
+        display: none;
+
+    }
+    .textual{
+        font-size: 2.5rem;
+        color: white;
+    }
+    .textual_list{
+        font-family: "Lora";
+        position: relative;
+        font-size: clamp(2rem, 3vh, 4rem);
+        color: white;
+        white-space: pre-wrap;
+    }
+    .textual_photos{
+        position: relative;
+        font-size: 40px;
+        font-weight: bold;
+        color: white;
+    }
+    .arrow_slide{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        z-index: 3;
+    }
+    .right_arr{
+        position: absolute;
+        left: 0; 
+        width: 86px;
+        height: 136px;
+        background-color: #D9D9D971;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .left_arr{
+        position: absolute;
+        right: 0;   
+        width: 86px;
+        height: 136px;
+        background-color: #D9D9D971;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .geometry_content{
+        position: absolute;
+        width: 48.427vw;
+        height: 70vh;
+        z-index: 1;
+        display: flex;  
+        bottom: 0;
+    }
+    .tournament_textuals{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: #2A2A2A70;
+        border: 1px solid #999999;
+        border-radius: 5px;
+        height: 80%;
+
+    }
+    .tournament_textuals_pres{
+        position: absolute;
+        width: 48.48vw;
+        background-color: #2A2A2A70;
+        border: 1px solid #999999;
+        border-radius: 5px; 
+        z-index: 3;
+        top: 5;
+        margin-top: 5vh;
+    }
+    .textual_area_photos{
+        width: 95%;
+        position: relative;
+        top: 50%;
+        z-index: 3;
+    }
+    .geometry_content_scroll{
+        position: absolute;
+        width: 48.427vw;
+        height: 70vh;
+        z-index: 1;
+        display: flex;
+        top:0;    
+    }
+    .geometry_content_tournament{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 48.427vw;
+        height: 70vh;
+        position: relative;
+    }
+    .geometry_content_scroll_photos{
+        position: absolute;
+        width: 48.427vw;
+        height: 70vh;
+        z-index: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .rectangle_one{
+        width: 20.56vw;
+        height: 63.3vh;
+        border: 1px solid #FCF1F1;
+        background-color: #6B0C0C;
+        position: absolute;  
+        bottom: 0;
+        right: 0;
+    }
+    .rectangle_two{
+        width: 17.303vw;
+        height: 15.471vh;
+        border: 1px solid #FCF1F1;
+        background-color: #6B0C0C;
+        position: absolute;  
+        bottom: 0; 
+        left: 0;
+    }
+    .rectangle_two_two{
+        width: 13.258vw;
+        height: 18.842vh;
+        border: 1px solid #FCF1F1;
+        background-color: #364957;
+        position: absolute;  
+        bottom: 20vh; 
+        left: 5vw;
+    }
+    .rectangle_one_two{
+        width: 20.562vw;
+        height: 63.786vh;
+        border: 1px solid #FCF1F1;
+        background-color: #364957;
+        position: absolute;  
+        bottom: 0; 
+        right: 0;
+    }
+    .rectangle_one_tree{
+        width: 20.674vw;
+        height: 39.412vh;
+        border: 1px solid #FCF1F1;
+        background-color: #C5D1D5;
+        position: absolute;  
+        bottom: 0; 
+        right: 0;
+    }
+    .rectangle_two_tree{
+        width: 5.618vw;
+        height: 70.095vh;
+        border: 1px solid #FCF1F1;
+        background-color: #C5D1D5;
+        position: absolute;  
+        bottom: 0; 
+        left: 5.7vw;
+    }
+    .rectangle_tree_tree{
+        width: 5.618vw;
+        height: 41.487vh;
+        border: 1px solid #FCF1F1;
+        background-color: #C5D1D5;
+        position: absolute;  
+        bottom: 0; 
+        left: 0;
+    }
+    .rectangle_one_four{
+        width: 20.674vw;
+        height: 39.412vh;
+        border: 1px solid #FCF1F1;
+        background-color: #183210;
+        position: absolute;  
+        bottom: 16vh; 
+        left: 12.236vw;
+    }
+    .rectangle_two_four{
+        width: 5.618vw;
+        height: 70.095vh;
+        border: 1px solid #FCF1F1;
+        background-color: #183210;
+        position: absolute;  
+        bottom: 0; 
+        left: 6.55vw;
+    }
+    .rectangle_tree_four{
+        width: 5.618vw;
+        height: 41.400vh;
+        border: 1px solid #FCF1F1;
+        background-color: #183210;
+        position: absolute;  
+        bottom: 0; 
+        left: 0.9vw;
+    }
+    .rectangle_one_List{
+        width: 20.56vw;
+        height: 39.41vh;
+        border: 1px solid #FCF1F1;
+        background-color: #C6D5C5;
+        position: absolute;  
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+    }
+    .rectangle_two_List{
+        display: block;
+        width: 20.56vw;
+        height: 39.41vh;
+        border: 1px solid #FCF1F1;
+        background-color: #C6D5C5;
+        position: absolute;  
+        bottom: 5;
+        left: 0;
+        pointer-events: none;
+    }
+    .rectangle_one_tournament{
+        position: absolute;
+        width: 20.56vw;
+        height: 39.41vh;
+        background-color: #C4D29C;
+        border: 1px solid #FCF1F1;
+        top: 40%;
+        left: 10%;
+    }
+    .rectangle_two_tournament{
+        position: absolute;
+        width: 8.9vw;
+        height: 39.41vh;
+        background-color: #C4D29C;
+        border: 1px solid #FCF1F1;
+        top: 65%;
+        left: 72.7%;
+    }
+    .rectangle_one_photos{
+        width: 32.247vw;
+        height: 26.707vh;
+        border: 1px solid #FCF1F1;
+        background-color: #9C9951;
+    }
+    .div_img {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;  
+    }
+    .div_img_photos{
+        width: 100%;
+        height: 90%;
+        z-index: 2; 
+        display: flex;
+        justify-content: start;
+        flex-direction: column;  
+    }
+    .div_img_list{
+        z-index: 2; 
+        position: absolute; 
+        bottom: 0;
+    }
+    .div_img_tournament{
+        position: absolute;
+        z-index: 2; 
+        bottom: 0;
+    }
+    .img_tournament_mobile{
+        display: none;
+    }
+    .img_{
+        width: auto;
+        height: auto;
+        max-height: 70vh;
+        max-width: 100%;
+        object-fit: contain;
+        z-index: 3;
+    }
+    .img_photos{
+    display: block;
+    }
+    .img_mobile_photos{
+    display: none;
+    }
+    .img_ img{
+        width: 100vw;
+        height: 70vh;
+        max-height: 70vh;
+        max-width: 100%;
+        object-fit: contain;
+    }
+    .img_mobile{
+        display: none;
+    }
+
+@media (max-width: 900px){
+
+.carousel_meta{
+    grid-template-columns: 1fr;
+    grid-template-rows: 100%;
+    overflow-y: auto;
+}
+.list_scroll{
+    display: flex;
+    flex-direction: column;
+}
+.visual{
+    justify-content: center;
+    position: relative;
+    width: 100vw;
+}
+.arrow_slide{
+    display: none;
+}
+.activ_brain{
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+}
+.activ_brain_photos{
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;   
+}
+.textual_area{
+    justify-content: space-between;
+    height: 100%;
+    margin: 0;
+    padding: 0; 
+}
+.img_{
+    display: none;
+}
+.img_mobile{
+    display: block;
+    z-index: 1;
+    height: 62.5vh;
+    width: 100%;
+}
+
+.img_tournament{
+    display: none;
+}
+.img_tournament_mobile{
+    display: block;
+}
+.carousel_textuals{
+    z-index: 3;
+    max-width: none;
+    width: 95%;
+    align-content: center;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+.activ_brain, .visual{
+    grid-column: 1/2;
+    grid-row: 1/2;
+    height: 100%;
+}
+.activ_brain_photos, .visual_photos{
+    grid-column: 1 / 2; 
+    grid-row: 1 / 2;    
+    width: 100%;
+    height: 100vh;
+}
+.textual{
+    font-family: "Lora";
+    font-size: 2rem;
+    color: white;
+    margin: 0 auto;
+    padding-bottom: 4.5vh;
+}
+.textual_tournament{
+    font-size: clamp(2rem, 3vh, 4rem);
+    color: white;
+    margin: 0 auto;
+    padding-bottom: 4.5vh;
+    height: 80vh;
+    white-space: pre-wrap;
+}
+.rectangle_one{
+    display: none;
+}
+.rectangle_two{
+    width: 60.697vw;
+    height: 19.206vh;
+    border: 1px solid #FCF1F1;
+    background-color: #6B0C0C;
+    position: absolute;  
+    top: 0; 
+    left: -10vw;
+}
+.rectangle_one_List{
+        width: 20.56vw;
+        height: 39.41vh;
+        border: 1px solid #FCF1F1;
+        background-color: #C6D5C5;
+        position: absolute;  
+        bottom: 50%;
+        left: 100%;
+        pointer-events: none;
+}
+.rectangle_two_List{
+    display: none;
+}
+.geometry_content{
+    width: auto;
+    top: 0;
+}
+.button{
+    display: none;
+}
+.carousel_title{
+    display: none;
+
+}
+.carousel_title_mobile{
+    display: block;
+    font-family: 'Lora_bold';
+    position: relative;
+    margin-top: -0px;
+    font-weight: bold;
+    color: #C1D07F;
+    z-index: 3;
+    font-size: 6rem;
+    width: 90%;
+    text-align: left;
+    white-space: pre-wrap;
+}
+.div_btn_list_mob{
+    display: flex;
+    align-items: end;
+    z-index: 3;
+    padding-bottom: 10vh;
+}
+.div_btn_tournament{
+    display: flex;
+    justify-content: end;
+    padding-right:4vw;
+    box-sizing: border-box;
+    height: auto;
+    width: 100%;
+}
+.button_tournament{
+    display: none;
+}
+.button_tournament_mobile{
+    width: 28vw;
+    height: 10.03vh;
+    background-color: #B6B272;
+    border-radius: 25px;
+    color: #D8D8D8;
+    font-size: 1.5rem; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: none;
+    width: 64.68vw;
+}
+.div_btn{
+    display: none;
+}
+.div_btn_photos{
+    display: block;
+    padding-bottom: 10vh;
+    padding-top: 10vh;
+}
+.div_btn_list{
+    display: none;
+}
+.button_photos{
+    display: block;
+    width: 64.68vw;    
+}
+.button_list{
+    display: block;
+    width: 64.68vw; 
+}
+.tournament_textuals_pres{
+    display: none;
+}
+.tournament_scroll {
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+.tournament_scroll .activ_brain, 
+.visual_tournament {
+    grid-column: 1 / 2; 
+    grid-row: 1 / 2;    
+    width: 100%;
+    height: 100vh;
+}
+.visual_tournament {
+    z-index: 1;
+    pointer-events: none; 
+    display: flex;
+    justify-content: flex-end;
+}
+.activ_brain{
+    z-index: 2;
+}
+.tournament_textuals{
+    display: flex;
+    justify-content: space-around;
+    background-color: #2A2A2A70;
+    border: 1px solid #999999;
+}
+.textual_area,
+.tournament_textuals,
+.textual{ 
+    font-size: clamp(2rem, 3vh, 4rem);  
+}
+.textual_area_photos{
+    width: 95%;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+.photos_scroll {
+    grid-template-areas: "stack";
+}
+.img_photos{
+    display: none;
+}
+.img_mobile_photos{
+    display: flex;
+    margin-top: auto;
+    width: auto;
+    max-width: none;
+}
+.img_mobile_photos img{
+    height:55.44vh;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+.geometry_content_scroll_photos{
+        right: 0;
+        top: 10%;
+        
+}
+.rectangle_one_photos{
+        height: 48.76vw;
+        width: 16.93vh;
+}
+}

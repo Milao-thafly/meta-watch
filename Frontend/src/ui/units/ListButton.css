@@ -1,0 +1,83 @@
+.list_card{
+    display: flex;
+    align-items: stretch;
+    background-color: #EBE3DB;
+    border-radius: 15px;
+    
+}
+.add_button_list{
+    width: 85vw;
+    text-decoration: none;
+}
+.list_visual{
+    padding-left:1vw;
+    margin: 1vh 0 1vh 0;
+}
+.list_info{
+    width: 100%;
+    flex: 1;
+}
+.id_list{
+    display: flex;
+    justify-content: end;
+    gap: 0.5vw;
+    height: 50%;
+    color: black;
+
+}
+.list_name{
+    width: 37%;
+    background-color: #D8CED6;
+    width: 44.5%;
+    box-sizing: border-box;
+    padding-right:2vw;
+}
+
+.date_creation_list{
+    width: 37%;
+    background-color: #D8CED6;
+    width: 44.5%;
+    border-radius: 0 15px 0 0;
+}
+.list_name, .date_creation_list {
+    display: flex;
+    align-items: flex-start;    
+    justify-content: start; 
+    padding-left: 15px;     
+    box-sizing: border-box; 
+    padding-top: 1vh;
+    font-size: 32px;
+}
+.list_spec{
+    display: flex;
+    justify-content: end;
+    flex: 1;
+    margin: 0;
+    height: 50%;
+}
+.detachment_name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #474652;
+    color: white;
+    width: 30%;
+    
+}
+.number_units{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #474652;
+    color: white;
+    width: 30%;
+    border-radius: 0 0 15px 0; 
+}
+.detachment_name, .number_units{
+    font-size: 24px;
+}
+.id_list p, .list_spec p, .list_name, .date_creation_list {
+    margin-top: 0;
+    margin-bottom: 0;
+    
+}

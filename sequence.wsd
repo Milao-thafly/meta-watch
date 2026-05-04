@@ -1,0 +1,29 @@
+@startuml Sequence-meta
+actor "Utilisateur" as user
+participant "Interface Web" as UI
+participant "Contrôleur List" as Crtl
+database "Base de donnée" as Bdd
+user -> UI : Clique sur "Add Unit une unité"
+UI -> Ctrl : Requête addUnit(id_unite)
+BDD --> Ctrl : Points OK
+BDD --> Ctrl : Confirmation
+Ctrl --> UI : Mise à jour de l'affichage
+UI --> user : Afficher l'unité ajoutée
+
+user -> UI : Clique sur "Add picture"
+UI -> Ctrl : Requête addPicture (id_photo)
+BDD --> Ctrl : "Path accepted"
+BDD --> Ctrl : Confirmation
+Ctrl --> UI : Mise à jours de l'affichage
+UI --> user : Afficher la photo ajoutée
+UI -> User : Ramène sur browse photo
+
+user -> UI : Clique sur "Add tournament"
+UI -> Ctrl : Requête addTournament(id_tournament)
+BDD --> Ctrl : "Tournament created"
+BDD --> Ctrl : Confirmation 
+Ctrl --> UI : Mise à jour de l'affichage
+UI --> user : Afficher les détails
+
+UI -> user : Ramène sur page de gestion de tournois
+@enduml

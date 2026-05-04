@@ -1,0 +1,34 @@
+name: ci-metawatch
+
+on:
+  push:
+    branches: 
+      - 'features/**'
+  pull_request:
+    branches:
+      - 'features/**'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check Docker version
+        run: docker --version
+
+      - name: Log container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{ secrets.META_WATCH_TOKEN }}
+
+      
+      - name: Run Deploy with Makefile
+        run: make deploy
