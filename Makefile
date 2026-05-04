@@ -50,3 +50,11 @@ clean:
 
 sf-console:
 		$(DOCKER_COMPOSE) exec backend php bin/console $(c)
+
+rollback:
+	@echo "Détection d'erreur critique : Lancement du rollback..."
+		$(DOCKER_COMPOSE) down -v
+		[ -f ./Backend/.env.backup ] && cp ./Backend/.env.backup ./Backend/.env || echo "Pas de backup Back"
+		[ -f ./Frontend/.env.backup ] && cp ./Frontend/.env.backup ./Frontend/.env || echo "Pas de backup Front"
+		$(DOCKER_COMPOSE) up -d
+		@echo "Système restauré à l'état initial."
