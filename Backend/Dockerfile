@@ -6,7 +6,7 @@ RUN apk add --no-cache \
     libpq-dev \
     libzip-dev\
     zlib-dev \
-    git \ 
+    git \  
     unzip \
     && docker-php-ext-install \
     intl \
