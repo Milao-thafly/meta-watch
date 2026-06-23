@@ -1,29 +1,46 @@
-@startuml Sequence-meta
-actor "Utilisateur" as user
-participant "Interface Web" as UI
-participant "Contrôleur List" as Crtl
-database "Base de donnée" as Bdd
-user -> UI : Clique sur "Add Unit une unité"
-UI -> Ctrl : Requête addUnit(id_unite)
-BDD --> Ctrl : Points OK
-BDD --> Ctrl : Confirmation
-Ctrl --> UI : Mise à jour de l'affichage
-UI --> user : Afficher l'unité ajoutée
+@startuml ListCreationDiagram
+left to right direction
+skinparam packageStyle rect
 
-user -> UI : Clique sur "Add picture"
-UI -> Ctrl : Requête addPicture (id_photo)
-BDD --> Ctrl : "Path accepted"
-BDD --> Ctrl : Confirmation
-Ctrl --> UI : Mise à jours de l'affichage
-UI --> user : Afficher la photo ajoutée
-UI -> User : Ramène sur browse photo
+actor "User" as user
+actor "Player" as player
+actor "Admin" as admin
 
-user -> UI : Clique sur "Add tournament"
-UI -> Ctrl : Requête addTournament(id_tournament)
-BDD --> Ctrl : "Tournament created"
-BDD --> Ctrl : Confirmation 
-Ctrl --> UI : Mise à jour de l'affichage
-UI --> user : Afficher les détails
+rectangle metawatch {
+    (photos_user)
+    (photos)
+    (tournament)
+    (listcreation)
+    (faction)
+    (unit)
+    (detachment)
+    (melee_weapon)
+    (ranged_weapon)
+    (stats)
+    (morderate_user) as moderate
+    (organise_tournament) as org_tournament
 
-UI -> user : Ramène sur page de gestion de tournois
+    ' Héritages pour la hiérarchie des droits
+    admin --|> user
+    player --|> user
+
+    ' Fonctionnalités de base de l'User (héritées par Admin et Player)
+    user -- (listcreation)
+    user -- (photos_user)
+    user -- (org_tournament)
+    
+    ' Fonctionnalités spécifiques
+    player -- (tournament)
+    admin -- (moderate)
+    
+    ' Relations internes
+    (listcreation) ..> (faction) : <<include>>
+    (photos_user) ..> (photos): <<include>>
+    (faction) ..> (unit)
+    (faction) ..> (detachment)
+    (unit) ..> (melee_weapon) : <<include>>
+    (unit) ..> (ranged_weapon) : <<include>>
+    (unit) ..> (stats)
+    (org_tournament) ..> (tournament) : <<include>>
+}
 @enduml

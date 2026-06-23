@@ -1,13 +1,64 @@
+.title_tof{
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    margin-left: 10vw;
+    color: #FFFFFF;
+    margin-bottom: 0;
+}
 .photos_section{
     width: 90%;  
-    background-color: #ebe3db12; 
-    border: 1px solid #999999; 
     display: flex;
     align-items: center;    
     margin: 2vh 0 1vh 0; 
     margin-left: auto;
     margin-right: auto; 
 }
+.photos_form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 15px;
+    gap: 2vh;
+    width: 65.51vw;
+    background-color: #EBE3DB;
+    border: 3px solid #FFFFFF;
+}
 .descri_photos{
-    height: 50vh;
+    height: 35vh;
+    width: 100%;
+    border-radius: 15px;
+}
+.photos_description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3vw;
+    height: 50vh
+}
+.drop_zone{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 80%;
+    background-color: #ffffff44;
+    border: 1px solid black;
+    margin-top: 5vh;
+    margin-left: 5vh;
+    border-radius: 15px;
+}
+.photos_submit_form{
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    width: 70%;
+    height: 10%;
+    font-size: 1.5rem;
+    margin-left: 8vw;
+    margin-top: 2vh;
+}
+.photo_label{
+    font-size: 2rem;
 }

@@ -21,8 +21,8 @@ rectangle metawatch {
     (stats)
 
 
-    (Modérer Utilisateurs) as moderate
-    (Organiser Tournoi) as org_tournament
+    (morderate_user) as moderate
+    (organise_tournament) as org_tournament
 
     admin -- moderate
     user -- (listcreation)

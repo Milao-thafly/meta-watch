@@ -1,60 +1,79 @@
 # ==============================================================================
-# Nom du script : Makefile (Cible principale : deploy)
-# Objectif     : Déployer l'application (Backend Symfony / Frontend Node)
-# Pré-requis   :
+# Script Name : Makefile (Main target: deploy)
+# Objective   : Deploy the application (Symfony Backend / Node Frontend)
+# Prerequisites:
 #   - Docker & Docker Compose
-#   - Accès réseau (pour Composer/NPM)
-#   - Ports 80, 5173 et 3306 libres
+#   - Network access (for Composer/NPM)
+#   - Ports 80, 5173, and 3306 must be available
 #
-# Étapes :
-#   1. Vérification des dépendances (Git config / Composer / NPM)
-#   2. Construction du projet (Docker Build)
-#   3. Initialisation Base de données (Create / Sync Storage)
+# Steps :
+#   1. Dependency check (Git config / Composer / NPM)
+#   2. Project build (Docker Build)
+#   3. Database initialization (Create / Sync Storage)
 #
-# En cas d'erreur :
-#   - Le processus s'arrête immédiatement (comportement natif de Make)
-#   - Un message d'erreur spécifique à la commande est affiché
+# Error handling:
+#   - Process stops immediately (native Make behavior)
+#   - Specific error message displayed for each command
 # ====================================================================
 
-
 DOCKER_COMPOSE = docker compose -p meta-watch
+USER_ID = $(shell id -u)
+GROUP_ID = $(shell id -g)
 
 help:
-		@echo "Commandes disponibles :"
-		@echo " make build		:Construit et lance les conteneurs"
-		@echo " make deploy		:Installation complète (Build + Deps + Migration"
-		@echo " make stop 		: Arrête les conteneurs"
-		@echo " make sf-console	: Accès direct à la console Symfony (ex: make sf-console c=debug:router)"
-		@echo " make clean		: Nettoie les caches et les volumes"
+	@echo ""
+	@echo "if you want to use this deployment take a look at the variable it the top of help section. We have initialised a variable DOCKER_COMPOSE who launch the command: \"docker compose -p meta-watch\" the section deployment call The global variable and start a build and permise to wait 10 seconds with a message from a echo."
+	@echo "next exec -T backend git config --global --add safe.directory"
+	@echo "this command is asked for asking git to make a safe configuration in your directory. If an user want to do some operations in the repository this configuration will stop the user that is not conected with the the acount of the repository."
+	@echo "exec -T backend composer install"
+	@echo "Installation of composer. That a package manager that allows you to install with command line packages for php"
+	@echo "Create the database with doctrine if this one is not created"
+	@echo "exec -T backend php bin/console doctrine:migrations:sync-metadata-storage"
+	@echo "Synchronisation of data with doctrine when you have to much migration in waiting or dump a database this command watch your entity and synchronise as best as he can the data."
+	@echo "exec -T frontend sh -c \"cd /app && npm install\""
+	@echo "@echo \"Project ready !\""
+	@echo Ask a shell for prompting cd for navigate in /app if we finished in app we can make npm install for install all the dependencies needed and un node_module folder"
+	@echo "the build section will ask to remove and recreate an newer image"
+	@echo "up -d --build"
+	@echo "down -v"
+	@echo "delete image and rebuild one -v allow me to make a connection between my image and my local machine"
+	@echo "[ -f ./Backend/.env.backup ] && cp ./Backend/.env.backup ./Backend/.env || echo \"No backup Backend\""
+	@echo "[ -f ./Frontend/.env.backup ] && cp ./Frontend/.env.backup ./Frontend/.env || echo \"No backup Frontend\""
+	@echo "Search backend and frontend if the command pass you copy the last folder if the command fail you echo no backup"
+	@echo ""
+	@echo "Available commands:"
+	@echo " make build      : Build and start containers"
+	@echo " make deploy     : Full installation (Build + Deps + Migration)"
+	@echo " make stop       : Stop containers"
+	@echo " make sf-console : Direct access to Symfony console (e.g., make sf-console c=debug:router)"
+	@echo " make clean      : Clean up caches and volumes"
 
 deploy:
-		$(DOCKER_COMPOSE) up -d --build
-		@echo "Attente de MySQL..."
-		sleep 10
-		$(DOCKER_COMPOSE) exec -T backend git config --global --add safe.directory /var/www/html
-		$(DOCKER_COMPOSE) exec -T backend cp .env.example .env
-		$(DOCKER_COMPOSE) exec -T backend composer install
-		$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:database:create --if-not-exists
-		$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:migrations:sync-metadata-storage
-		$(DOCKER_COMPOSE) exec -T frontend sh -c "cd /app && npm install"
-		@echo "Projet prêt !" 
+	$(DOCKER_COMPOSE) up -d --build || { echo "Erreur : La construction ou le démarrage des conteneurs a échoué. Vérifiez votre Dockerfile ou vos ports."; exit 1; }
+	@echo "Attente de MySQL..."
+	sleep 10
+	$(DOCKER_COMPOSE) exec -T backend git config --global --add safe.directory /var/www/html || { echo "Erreur : Impossible de configurer le répertoire Git comme sécurisé (safe.directory)."; exit 1; }
+	$(DOCKER_COMPOSE) exec -T backend composer install || { echo "Erreur : L'installation des dépendances PHP (Composer) a échoué. Vérifiez votre connexion réseau ou votre fichier composer.json."; exit 1; }
+	$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:database:create --if-not-exists
+	$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:migrations:sync-metadata-storage || { echo "Erreur : Échec de la synchronisation des métadonnées de la base de données. Vérifiez vos entités."; exit 1; }
+	@echo "Project ready !" 
 
 build:
-		$(DOCKER_COMPOSE) up -d --build
+	$(DOCKER_COMPOSE) up -d --build
 
 stop:
-		$(DOCKER_COMPOSE) stop
+	$(DOCKER_COMPOSE) stop
 
 clean:
-		$(DOCKER_COMPOSE) down -v --remove-orphans
+	$(DOCKER_COMPOSE) down -v --remove-orphans
 
 sf-console:
-		$(DOCKER_COMPOSE) exec backend php bin/console $(c)
+	$(DOCKER_COMPOSE) exec backend php bin/console $(c)
 
 rollback:
-	@echo "Détection d'erreur critique : Lancement du rollback..."
-		$(DOCKER_COMPOSE) down -v
-		[ -f ./Backend/.env.backup ] && cp ./Backend/.env.backup ./Backend/.env || echo "Pas de backup Back"
-		[ -f ./Frontend/.env.backup ] && cp ./Frontend/.env.backup ./Frontend/.env || echo "Pas de backup Front"
-		$(DOCKER_COMPOSE) up -d
-		@echo "Système restauré à l'état initial."
+	@echo "Critical error detected : start a rollback..."
+	$(DOCKER_COMPOSE) down -v
+	[ -f ./Backend/.env.backup ] && cp ./Backend/.env.backup ./Backend/.env || echo "No backup Backend"
+	[ -f ./Frontend/.env.backup ] && cp ./Frontend/.env.backup ./Frontend/.env || echo "No backup Frontend"
+	$(DOCKER_COMPOSE) up -d
+	@echo "The system was recreated in is initial state."

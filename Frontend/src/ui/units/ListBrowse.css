@@ -4,16 +4,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 90vh;
     margin: auto;
     background-color: #ebe3db12;
     border: 1px solid #999999;
+    padding-bottom: 5vh;
 }
 
 
 .list_area{
     padding-top: 5vh;
     display: flex;
+    flex-direction: column; 
+    gap: 20px;           
+    width: 100%;           
+    align-items: center;
+    
 }
 
 

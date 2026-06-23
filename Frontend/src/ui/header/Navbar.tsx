@@ -4,6 +4,7 @@ import {useState} from 'react';
 import {useNavigate, Link} from 'react-router';
 import {useAuthContext} from '../../core/auth/useAuthContext'
 import {Dropdown} from '../dropdown/Dropdown'
+import "./Navbar.css";
 
 type NavLinkItem = {
     label: string;
@@ -32,27 +33,14 @@ export const NavBar = () => {
             <div className='navbar'>
             <Link to="/"><img src="/public/logo/Metawatch_logo.png" className='metawatch_logo' alt="Icon for login" /></Link>
             <div className='starways'>
-                <Dropdown trigger="Gameplay">
-                    <Link to="/Mylist">My list</Link>
-                    <Link to="/NewList">New list</Link>
-                    <Link to="OtherPlayList">Player's list</Link>
-                    <Link to="MetaAnalysis">Meta analysis</Link>
-                </Dropdown>
-
-                <Dropdown trigger="Modelism">
-                    <Link to="/modelsearch">Search a model</Link>
-                    <Link to="/pictures">Pictures</Link>
-                    
-                </Dropdown>
-                <Dropdown trigger="Tournaments">
-                    <Link to="/settournament">Set a tournament</Link>
-                    <Link to="/foundtournament">Found a tournament</Link>
-                    
-                </Dropdown>
-
+                <Link className='Nav_link' to="/Meta-watcher">Meta Watcher</Link>
+                <Link className='Nav_link' to="/Tournament">Tournament</Link>
+                <Link className='Nav_link' to="/Modelism">Modelism</Link>
+                <Link className='Nav_link' to="/Contact">Contact</Link>
             </div>
+
             <Link to="/login"><img src="/public/logo/login-user-name-1.png" className='login_icon' alt="Icon for login" /></Link>
-            <Link to="/accountSettings">Account settings</Link>
+            {/* <Link to="/accountSettings">Account settings</Link> */}
             
             </div>
         </div>

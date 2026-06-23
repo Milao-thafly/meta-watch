@@ -85,7 +85,7 @@ export const Homepage = () => {
 
     return (
         <>
-
+        {/* <h1 className='home_tile'>Home</h1> */}
         <div className='carousel_section'>
             <div className='arrow_slide'>
                     <div className='right_arr' onClick={prevSlide} ><ArrowLeft color="white" size={24} /></div>
@@ -249,7 +249,6 @@ export const Homepage = () => {
                 <div className='activ_brain_scroll'>
                     <div className='textual_area_scroll'>
                         <div className='div_btn_list'>
-                            {/* <button className='button_list'>List</button> */}
                             <Link className='button_list' to='/listBrowse'>List</Link>
                         </div>
                         <div className='carousel_textuals_list'>
@@ -262,7 +261,7 @@ export const Homepage = () => {
                     </div>  
                     
                 </div>
-                <div className='visual'>
+                <div className='visual_list'>
                     <div className='div_img_list'>
                         <div className='img_'>
                             <img src="/public/background/Silence_king.png" alt="" />
@@ -276,7 +275,7 @@ export const Homepage = () => {
                         <div className='rectangle_one_List'></div>
                     </div>
                     <div className='div_btn_list_mob'>
-                            <button className='button_list'>List</button>
+                            <Link className='button_list' to='/listBrowse'>List</Link>
                     </div>
                 </div>
             </section>
@@ -286,19 +285,22 @@ export const Homepage = () => {
                     <div className='textual_area_tournament'>
                         
                         <div className='tournament_textuals'>
-<p className='textual_tournament'>
-{`MANGEUR PRO: Samedi 14/02/2026. Grenoble 38160 France. 2000pt. 
-Mc do Prenez vos meilleurs listes pour venir jouer comme vous êtes.
+                        <p className='textual_tournament'>
+                        {`MANGEUR PRO: Samedi 14/02/2026. Grenoble 38160 France. 2000pt. 
+                        Mc do Prenez vos meilleurs listes pour venir jouer comme vous êtes.
 
-Unité legend interdite. aucune entrée ne peut être prise plus de 1 fois sauf les Battleline, qui peuvent être pris 3 fois maximum.`}
-</p>
+                        Unité legend interdite. aucune entrée ne peut être prise plus de 1 fois sauf les Battleline, qui peuvent être pris 3 fois maximum.`}
+                        
+                        </p>
                         <div className='div_btn_tournament_'>
-                            <button className='button_tournament_mobile'>Tournament</button>
+                            <Link className='button_tournament_mobile' to='/addEvent'>Tournament</Link>
+
                         </div>
+                        
                         </div>
 
                         <div className='div_btn_tournament'>
-                            <button className='button_tournament'>Tournament</button>
+                            <Link className='button_tournament' to='/addEvent'>Tournament</Link>
                         </div>
                     </div>  
                     
@@ -329,7 +331,6 @@ Unité legend interdite. aucune entrée ne peut être prise plus de 1 fois sauf 
                 <div className='activ_brain_photos'>
                     <div className='textual_area_photos'>
                         <div className='div_btn_photos'>
-                            {/* <button className='button_photos'>Photos</button> */}
                             <Link className='button_photos' to='/addPhotos'>Photos</Link>
                         </div>
                         <div className='photos_textuals'>
@@ -345,7 +346,7 @@ Unité legend interdite. aucune entrée ne peut être prise plus de 1 fois sauf 
                 <div className='visual'>
                     <div className='div_img_photos'>
                         <div className='img_photos'>
-                            <img src="/public/background/Iron_warrior.png" alt="" />
+                            <img src="/public/background/Iron_warrior_desk.png" alt="" />
                         </div>
                         <div className='img_mobile_photos'>
                             <img src="/public/background/Iron_warrior_mob.png" alt="" />

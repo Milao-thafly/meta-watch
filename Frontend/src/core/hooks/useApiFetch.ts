@@ -32,7 +32,8 @@ export const useApiFetch = <TResponse>() => {
 
             try{
                 const fetchOptions: RequestInit = {
-                    method,
+                    method: method,
+                    
                     headers:{
                         Accept: "application/json",
                         "Content-type": "application/json",
@@ -43,7 +44,9 @@ export const useApiFetch = <TResponse>() => {
                 if (body && method !== "GET") {
                     fetchOptions.body = JSON.stringify(body);
                 }
-
+                if (body && method!== "GET"){
+                    fetchOptions.body = JSON.stringify(body);
+                }
                 if (credentials !== undefined) {
                     fetchOptions.credentials = credentials;
                 }

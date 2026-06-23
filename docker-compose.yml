@@ -1,26 +1,47 @@
 name: meta-watch
 services:
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+
   database:
     image: mysql:8.0
     ports:
       - "3309:3306" 
     environment:
-      MYSQL_USER: app
-      MYSQL_PASSWORD: "!ChangeMe!"
-      MYSQL_DATABASE: app
+      MYSQL_USER: fabius
+      MYSQL_PASSWORD: lol
+      MYSQL_DATABASE: meta-watch
       MYSQL_ROOT_PASSWORD: db_password
     volumes:
       - database_data:/var/lib/mysql:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+    user: root
 
   backend: 
-    build: ./Backend
+    tmpfs:
+      - /var/www/html/var/cache
+    build:
+      context: ./Backend
+      args:
+        USER_ID: ${UID:-1000}
+        GROUP_ID: ${GID:-1000}
     volumes: 
       - ./Backend:/var/www/html
     ports:
       - "8000:8000"
+    
 
   frontend:
-    build: ./Frontend
+    build:
+      context: ./Frontend
+      args:
+        USER_ID: ${UID:-1000}
+        GROUP_ID: ${GID:-1000}
     volumes:
       - ./Frontend:/app
       - /app/node_modules

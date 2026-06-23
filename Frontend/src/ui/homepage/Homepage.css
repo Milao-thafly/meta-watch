@@ -21,6 +21,16 @@
         right: 0;
         z-index: 3;
     }
+    .home_tile{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-size: 32px;
+        font-family: 'Lora';
+        color: white;
+        margin: 0;
+        padding: 0;
+    }
     .carousel_section{
         overflow: hidden;
     }
@@ -28,9 +38,9 @@
         display: flex;
         width: 400%;
         transition: transform 0.5s ease-in-out;
+        transform: translateX(calc(var(--index) * -25%));
     }
     .carousel_meta{
-        flex: 0 0 100vw;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 100%;
@@ -55,7 +65,7 @@
     .photos_scroll{
     display: grid;
         grid-template-columns: 1fr 1fr; 
-        height: calc(100vh - 148px);
+        height: calc(100vh - 128px);
         overflow: hidden;
 
     }
@@ -71,6 +81,7 @@
         top: 0;
         left: 50%;
         transform: translateX(-50%);
+        padding-top: 5vh;
     }
     .activ_brain_photos{
         width: 95%;
@@ -96,12 +107,13 @@
     }
     .textual_tournament{
         display: flex;
+        flex-direction: column;
         font-family: "Lora";
         color: white;
         margin: 0 auto;
         padding-bottom: 4.5vh;
         white-space: pre-wrap;
-        font-size: clamp(2rem, 3vh, 4rem);
+        font-size: clamp(1.5rem, 3vh, 4rem);
     }
     .textual_area_scroll{
         width: auto;
@@ -136,9 +148,13 @@
         border: none;
     }
     .button_tournament_mobile{
+        
         display: none;
     }
     .button_photos{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 28vw;
         height: 10.03vh;
         background-color: #B6B272;
@@ -146,8 +162,13 @@
         color: #D8D8D8;
         font-size: 1.5rem; 
         border: none;
+        text-decoration: none;
     }
     .button_list{
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 28vw;
         height: 10.03vh;
         background-color: #B6B272;
@@ -155,12 +176,22 @@
         color: #D8D8D8;
         font-size: 1.5rem; 
         border: none;
-        margin-top: 45vh;
     }
     .div_btn_list_mob{
     display: none;
     }
+    .div_btn_list{
+    display: flex;
+    align-items: end;
+    z-index: 3;
+    padding-bottom: 10vh;
+    }
     .visual{
+    display: flex;
+    justify-content: end;
+    overflow: hidden;
+    }
+    .visual_list{
     display: flex;
     justify-content: end;
     overflow: hidden;
@@ -202,16 +233,17 @@
     }
     .carousel_title_mobile{
         display: none;
-
+        margin-bottom: 0;
     }
     .textual{
-        font-size: 2.5rem;
+        font-size: clamp(1.5rem, 3vh, 4rem);
         color: white;
+        
     }
     .textual_list{
         font-family: "Lora";
         position: relative;
-        font-size: clamp(2rem, 3vh, 4rem);
+        font-size: clamp(1.5rem, 3vh, 4rem);
         color: white;
         white-space: pre-wrap;
     }
@@ -252,9 +284,10 @@
         position: absolute;
         width: 48.427vw;
         height: 70vh;
-        z-index: 1;
         display: flex;  
         bottom: 0;
+        right: 0;
+        
     }
     .tournament_textuals{
         display: flex;
@@ -305,6 +338,7 @@
         z-index: 1;
         display: flex;
         justify-content: flex-end;
+        left: -50px;
     }
     .rectangle_one{
         width: 20.56vw;
@@ -322,7 +356,7 @@
         background-color: #6B0C0C;
         position: absolute;  
         bottom: 0; 
-        left: 0;
+        left: -13;
     }
     .rectangle_two_two{
         width: 13.258vw;
@@ -483,7 +517,6 @@
     }
     .img_ img{
         width: 100vw;
-        height: 70vh;
         max-height: 70vh;
         max-width: 100%;
         object-fit: contain;
@@ -500,13 +533,26 @@
     overflow-y: auto;
 }
 .list_scroll{
-    display: flex;
-    flex-direction: column;
+    
+            display: flex;
+        justify-content: flex-end;
+        height: 100vh;
 }
 .visual{
-    justify-content: center;
     position: relative;
-    width: 100vw;
+}
+.visual_list{
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    }
+.geometry_content_scroll {
+    position: absolute;
+    width: 48.427vw;
+    height: 70vh;
+    z-index: 1;
+    display: flex;
+    top: 0;
 }
 .arrow_slide{
     display: none;
@@ -533,8 +579,7 @@
 .img_mobile{
     display: block;
     z-index: 1;
-    height: 62.5vh;
-    width: 100%;
+    
 }
 
 .img_tournament{
@@ -554,7 +599,6 @@
 .activ_brain, .visual{
     grid-column: 1/2;
     grid-row: 1/2;
-    height: 100%;
 }
 .activ_brain_photos, .visual_photos{
     grid-column: 1 / 2; 
@@ -587,7 +631,7 @@
     background-color: #6B0C0C;
     position: absolute;  
     top: 0; 
-    left: -10vw;
+    left: -12vw;
 }
 .rectangle_one_List{
         width: 20.56vw;
@@ -596,15 +640,15 @@
         background-color: #C6D5C5;
         position: absolute;  
         bottom: 50%;
-        left: 100%;
+        right: 90%;
         pointer-events: none;
 }
 .rectangle_two_List{
     display: none;
 }
 .geometry_content{
-    width: auto;
     top: 0;
+    right: 0;
 }
 .button{
     display: none;
@@ -669,11 +713,15 @@
     display: none;
 }
 .button_photos{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 64.68vw;    
 }
 .button_list{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 64.68vw; 
 }
 .tournament_textuals_pres{
@@ -713,7 +761,7 @@
 .textual_area,
 .tournament_textuals,
 .textual{ 
-    font-size: clamp(2rem, 3vh, 4rem);  
+    font-size: clamp(1.5rem, 3vh, 4rem);  
 }
 .textual_area_photos{
     width: 95%;

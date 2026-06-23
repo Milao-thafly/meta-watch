@@ -1,0 +1,77 @@
+.auth_section{
+    height: calc(100vh - 25.58vh);
+    display: flex;
+    align-items: center;
+}
+.login_page{
+    height: 68.58vh;
+    width: 77.03vw;   
+    background-color: #ebe3db12; 
+    border: 1px solid #999999; 
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    padding: 0 0 2vh 0;
+    margin: 2vh 0 2vh 0;
+    margin-left: auto;
+    margin-right: auto; 
+    gap: 0;
+}
+.stratagems_row{
+    gap: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 70%;
+    border-radius: 15px;
+    width: 65.51vw;
+    background-color: #EBE3DB;
+    border: 3px solid #FFFFFF;
+}
+.title_log{
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    margin-left: 12vw;
+    color: #FFFFFF;
+}
+.form_input{
+    width: 56.37vw; 
+    height: 7.34vh;
+    border-radius: 15px;
+    background-color: #FFFFFF7D;
+}
+.div_label{
+    display: flex;
+    justify-content: start;
+    margin-left: 2vh;
+    width: 56.37vw; 
+}
+.div_link{
+    display: flex;
+    justify-content: start;
+    margin-left: 2vh;
+    width: 56.37vw; 
+}
+.form_label{
+    font-size: 2rem;
+}
+.auth_support{
+    font-size: 1.5rem;
+}
+.submit_form{
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    width: 56.37vw; 
+    height: 7.34vh;
+    font-size: 2rem;
+}

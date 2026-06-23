@@ -14,10 +14,10 @@ export const UnitBrowse = () => {
 
     return(
         <>
-        <div className='UnitBrowse'>
+        <div className='unitBrowse'>
             <Link className='add_button' to='/addUnits'>Add</Link>
             <Dropdown trigger="Modelism" className='add_button'>
-                                <button>1</button>
+                                <button>Copy</button>
                                 <button>2</button>
                                 <button>3</button>           
             </Dropdown>

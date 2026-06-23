@@ -1,3 +1,10 @@
+.UnitBrowse{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .register_page{
     height: 100vh;
     display: flex;
@@ -5,17 +12,192 @@
     align-items: center;
     
 }
-.register_form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2vh;
-    width: 80%;
-    height: 60%;
-    background-color: #EBE3DB;
-}
 .title_reg{
     width: 100%;
     display: flex;
     justify-content: center;
+}
+.data_form{
+    padding-bottom: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 15px;
+    width: 80.51vw;
+    height: auto;
+    background-color: #EBE3DB;
+    border: 3px solid #FFFFFF;
+}
+.data_container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    border-radius: 15px;
+    width: 80.51vw;
+    height: auto;
+    margin-top: 3vh;
+    background-color: #EBE3DB;
+    border: 3px solid #FFFFFF;
+}
+
+.unit_data{
+    color: black;
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+}
+.unit_name{
+    padding-left: 3vh;
+}
+.stat_container{
+   width: 100%;
+    display: flex;
+    flex-direction: row;     
+    flex-wrap: wrap;                       
+    padding: 0;
+    justify-content: center;
+}
+.stat_item {
+    display: flex;
+    flex-direction: column;  
+    align-items: center;      
+    min-width: 4vw;          
+}
+
+.numbers_stat{
+    display: flex;
+    min-width: 7px;
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 0 5px 0 5px;
+}
+.apt_container p{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; 
+    align-items: stretch;
+    list-style: none;
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+.apt_container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+.apt_label {
+    margin-left: 3vw;
+}
+.apt_item{
+    flex: 1 ;
+    border-right: 2px solid black;
+}
+.apt_item:last-child {
+    border-right: none;
+}
+.apt_list{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border-radius: 15px;
+    width: 80.51vw;
+    height: auto;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    background-color: #EBE3DB;
+    border: 3px solid #FFFFFF;
+}
+.weapons_container{
+    list-style: none;
+    padding: 0;
+}
+
+.weapon_item {
+    display: flex;
+    flex-direction: row;    
+    white-space: nowrap;     
+    overflow: hidden;       
+    text-overflow: ellipsis; 
+    font-size: 0.90rem;      
+    align-items: center;
+    margin-bottom: 3.8vh;
+
+}
+.weapons_stats{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     min-width: 5vw;
+}
+.stats_wrapper{
+    font-size: 0.90rem; 
+}
+.weapon_name{
+    padding-right: 2vw;
+    min-width: 177.57px;
+}
+.the_stat{
+    min-width: 7px;
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 0 5px 0 5px;
+}
+
+
+@media (max-width: 402px) {
+    .unit_name{
+        display: flex;
+        justify-content: center;
+        padding-left: 0vh;
+    }
+    .data_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    width: 80.51vw;
+    height: auto;
+    margin-top: 3vh;
+    background-color: #EBE3DB;
+    border: 3px solid #FFFFFF;
+}
+.weapon_item {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    padding-left: 2vw;
+}
+
+.weapon_name {
+    grid-column: 1 / -1; 
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.weapons_stats {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+}
+.stat_container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 6vw;
+    flex-wrap: wrap;
+    padding: 0;
+    justify-content: center;
+
+}
 }
