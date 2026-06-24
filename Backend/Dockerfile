@@ -32,6 +32,12 @@ WORKDIR /var/www/html
 
 EXPOSE 8000
 
+COPY --chown=metawatch:metawatch Backend/composer.json Backend/composer.lock ./
+
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+COPY --chown=metawatch:metawatch Backend/ .
+
 USER metawatch
 
 CMD ["symfony", "server:start", "--port=8000", "--no-tls", "--allow-http", "--allow-all-ip"]
