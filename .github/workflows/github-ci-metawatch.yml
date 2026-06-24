@@ -11,8 +11,6 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     permissions:
       contents: read
       packages: write
@@ -28,8 +26,10 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{github.actor}}
+          username: ${{ github.actor }}
           password: ${{ secrets.META_WATCH_TOKEN }}
       
       - name: Run Deploy with Makefile
-        run: make deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: make deploy DATABASE_URL="${DATABASE_URL}"
