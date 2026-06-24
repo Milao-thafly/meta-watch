@@ -54,7 +54,7 @@ deploy:
 	sleep 10
 	docker compose exec -u root backend mkdir -p /var/www/html/vendor
 	docker compose exec -u root backend chown -R 1000:1000 /var/www/html/vendor
-	docker compose exec -u 1000:1000 backend composer install
+	docker compose exec -u 1000:1000 backend composer install --no-scripts
 	$(DOCKER_COMPOSE) exec -T backend git config --global --add safe.directory /var/www/html || { echo "Erreur : Impossible de configurer le répertoire Git comme sécurisé (safe.directory)."; exit 1; }
 	$(DOCKER_COMPOSE) exec -T backend composer install || { echo "Erreur : L'installation des dépendances PHP (Composer) a échoué. Vérifiez votre connexion réseau ou votre fichier composer.json."; exit 1; }
 	$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:database:create --if-not-exists
