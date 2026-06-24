@@ -32,6 +32,7 @@ services:
         GROUP_ID: ${GID:-1000}
     volumes: 
       - ./Backend:/var/www/html
+      - vendor_data:/var/www/html/vendor
     ports:
       - "8000:8000"
     
@@ -51,3 +52,4 @@ services:
 volumes:
 
   database_data:
+  vendor_data:

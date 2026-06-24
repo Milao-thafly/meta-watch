@@ -52,6 +52,7 @@ deploy:
 	$(DOCKER_COMPOSE) up -d --build || { echo "Erreur : La construction ou le démarrage des conteneurs a échoué. Vérifiez votre Dockerfile ou vos ports."; exit 1; }
 	@echo "Attente de MySQL..."
 	sleep 10
+	docker compose -p meta-watch exec -u root backend chown -R 1000:1000 /var/www/html/vendor
 	$(DOCKER_COMPOSE) exec -T backend git config --global --add safe.directory /var/www/html || { echo "Erreur : Impossible de configurer le répertoire Git comme sécurisé (safe.directory)."; exit 1; }
 	$(DOCKER_COMPOSE) exec -T backend composer install || { echo "Erreur : L'installation des dépendances PHP (Composer) a échoué. Vérifiez votre connexion réseau ou votre fichier composer.json."; exit 1; }
 	$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:database:create --if-not-exists
