@@ -13,9 +13,9 @@ services:
     ports:
       - "3309:3306" 
     environment:
-      MYSQL_USER: fabius
-      MYSQL_PASSWORD: lol
-      MYSQL_DATABASE: meta-watch
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
       MYSQL_ROOT_PASSWORD: db_password
     volumes:
       - database_data:/var/lib/mysql:rw
