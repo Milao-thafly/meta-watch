@@ -37,6 +37,8 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_NAME: ${{ secrets.DB_NAME }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          UID: 1001
+          GID: 1001
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: make deploy DATABASE_URL="${DATABASE_URL}"
 
