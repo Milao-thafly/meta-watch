@@ -31,12 +31,9 @@ services:
         GROUP_ID: ${GID:-1000}
     volumes: 
       - ./Backend:/var/www/html
-      
     ports:
       - "8000:8000"
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
-
+      
   frontend:
     build:
       context: ./Frontend
@@ -48,8 +45,7 @@ services:
       - /app/node_modules
     ports:
       - "3000:3000"
-    environment:
-      SYMFONY_DOTENV_VARS: "DATABASE_URL"
+
     
 volumes:
 
