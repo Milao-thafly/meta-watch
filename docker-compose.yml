@@ -27,8 +27,8 @@ services:
     build:
       context: ./Backend
       args:
-        USER_ID: ${UID:-1000}
-        GROUP_ID: ${GID:-1000}
+        USER_ID: ${UID:-1001}
+        GROUP_ID: ${GID:-1001}
     volumes: 
       - ./Backend:/var/www/html
     ports:
@@ -38,8 +38,8 @@ services:
     build:
       context: ./Frontend
       args:
-        USER_ID: ${UID:-1000}
-        GROUP_ID: ${GID:-1000}
+        USER_ID: ${UID:-1001}
+        GROUP_ID: ${GID:-1001}
     volumes:
       - ./Frontend:/app
       - /app/node_modules

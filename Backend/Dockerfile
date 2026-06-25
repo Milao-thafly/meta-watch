@@ -31,7 +31,7 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash \
 WORKDIR /var/www/html
 
 COPY --chown=metawatch:metawatch . .
-RUN chown -R 1000:1000 /var/www/html
+RUN chown -R 1001:1001 /var/www/html
 
 EXPOSE 8000 
 
