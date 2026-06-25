@@ -52,10 +52,7 @@ deploy:
 	$(DOCKER_COMPOSE) up -d --build || { echo "Erreur : La construction ou le démarrage des conteneurs a échoué. Vérifiez votre Dockerfile ou vos ports."; exit 1; }
 	@echo "Attente de MySQL..."
 	sleep 15
-	until $(DOCKER_COMPOSE) exec -T database mysqladmin ping -hlocalhost -u$(DB_USER) -p$(DB_PASSWORD) --silent; do \
-        echo "MySQL non disponible, attente..."; \
-        sleep 2; \
-    done
+	until $(DOCKER_COMPOSE) exec -T database mysqladmin ping -hlocalhost -u$(DB_USER) -p$(DB_PASSWORD) --silent; 
 	$(DOCKER_COMPOSE) exec -T -u metawatch backend git config --global --add safe.directory /var/www/html || { echo "Erreur : Impossible de configurer le répertoire Git comme sécurisé (safe.directory)."; exit 1; }
 	$(DOCKER_COMPOSE) exec -T -u metawatch backend composer install --no-interaction --prefer-dist --no-progress --no-scripts || { echo "Erreur : L'installation des dépendances PHP (Composer) a échoué."; exit 1; }
 	$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:database:create --if-not-exists
