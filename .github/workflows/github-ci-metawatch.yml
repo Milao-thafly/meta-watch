@@ -22,12 +22,21 @@ jobs:
       - name: Check Docker version
         run: docker --version
 
+      - name: Build Docker image with correct UID
+        run: |
+          docker build \
+            --build-arg USER_ID=$(id -u) \
+            --build-arg GROUP_ID=$(id -g) \
+            -t meta-watch-backend .
+            
       - name: Log container registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.META_WATCH_TOKEN }}
+
+          
       
       - name: Run Deploy with Makefile
         env:
@@ -37,4 +46,3 @@ jobs:
       - name: Debug files before deploy
         run: |
           ls -la Backend/
-          # Si le .env n'est pas là, c'est que ton .gitignore l'a ignoré  
