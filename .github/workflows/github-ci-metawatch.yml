@@ -33,6 +33,10 @@ jobs:
       
       - name: Run Deploy with Makefile
         env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: make deploy DATABASE_URL="${DATABASE_URL}"
 
