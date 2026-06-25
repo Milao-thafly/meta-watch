@@ -32,8 +32,6 @@ WORKDIR /var/www/html
 
 COPY --chown=metawatch:metawatch . .
 
-RUN composer install --optimize-autoloader --no-interaction 
-
 EXPOSE 8000 
 
 USER metawatch
