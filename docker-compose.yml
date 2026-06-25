@@ -30,7 +30,7 @@ services:
         USER_ID: ${UID:-1001}
         GROUP_ID: ${GID:-1001}
     environment:
-      DATABASE_URL: ${DATABASE_URL}
+        DATABASE_URL: ${DATABASE_URL}
     volumes: 
       - ./Backend:/var/www/html
     ports:
