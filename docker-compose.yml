@@ -17,6 +17,7 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_ROOT_PASSWORD: db_password
+      
     volumes:
       - database_data:/var/lib/mysql:rw
       - /var/run/docker.sock:/var/run/docker.sock
