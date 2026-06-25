@@ -34,7 +34,6 @@ services:
     ports:
       - "8000:8000"
 
-      
   frontend:
     build:
       context: ./Frontend
@@ -46,7 +45,6 @@ services:
       - /app/node_modules
     ports:
       - "3000:3000"
-
     
 volumes:
 
