@@ -30,13 +30,11 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash \
 
 WORKDIR /var/www/html
 
-EXPOSE 8000
+COPY --chown=metawatch:metawatch . .
 
-COPY --chown=metawatch:metawatch Backend/composer.json Backend/composer.lock ./
+RUN composer install --optimize-autoloader --no-interaction 
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-COPY --chown=metawatch:metawatch Backend/ .
+EXPOSE 8000 
 
 USER metawatch
 
