@@ -2,7 +2,7 @@ FROM php:8.5-fpm-alpine
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
-
+ 
 
 RUN apk add --no-cache \
     bash \
