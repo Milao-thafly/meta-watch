@@ -24,11 +24,12 @@ jobs:
 
       - name: Build Docker image with correct UID
         run: |
-          docker build \
-            --build-arg USER_ID=$(id -u) \
-            --build-arg GROUP_ID=$(id -g) \
-            -t meta-watch-backend \
-            -f Backend/Dockerfile Backend/
+          echo "L'utilisateur actuel (UID) est : $(id -u)"
+          echo "Le nom de cet utilisateur est : $(whoami)"
+          echo "Les infos détaillées du compte :"
+          getent passwd $(id -u)
+          echo "Le propriétaire du dossier est :"
+          ls -ld /home/runner/work/ton-repo/ton-repo/Backend
 
       - name: Log container registry
         uses: docker/login-action@v3
