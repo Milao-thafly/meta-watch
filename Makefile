@@ -14,7 +14,7 @@
 # Error handling:
 #   - Process stops immediately (native Make behavior)
 #   - Specific error message displayed for each command
-# ====================================================================
+# ===================================================================
 
 DOCKER_COMPOSE = docker compose -p meta-watch
 USER_ID = $(shell id -u)
