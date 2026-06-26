@@ -4,7 +4,7 @@ set -e
 # 1. On s'assure que les node_modules appartiennent à metawatch
 # Note : Ceci doit être fait en tant que root au démarrage
 if [ -d "/app/node_modules" ]; then
-    chown -R 1000:1000 /app/node_modules
+    chown -R 1001:1001 /app/node_modules
 fi
 
 # 2. Si le dossier est vide, on installe (pour le premier lancement)
