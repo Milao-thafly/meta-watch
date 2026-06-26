@@ -32,7 +32,7 @@ jobs:
 
           
       
-      - name: Run Deploy with Makefile
+      - name: Run Deploy 
         env:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
@@ -40,7 +40,7 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           UID: 1001
           GID: 1001
-        run: make deploy DATABASE_URL="${DATABASE_URL}"
+        run:  DATABASE_URL="${DATABASE_URL}" make deploy
 
       - name: Debug files before deploy
         run: |
