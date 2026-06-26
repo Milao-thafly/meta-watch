@@ -45,14 +45,14 @@ services:
       args:
         USER_ID: ${UID:-1001}
         GROUP_ID: ${GID:-1001}
+    working_dir: /app
     volumes:
       - ./Frontend:/app
       - /app/node_modules
     ports:
       - "3000:3000"
-    user: "1000:1000"
     
 volumes:
-
+  
   database_data:
   
