@@ -4,9 +4,7 @@ on:
   push:
     branches: 
       - 'features/**'
-  pull_request:
-    branches:
-      - 'main/**'
+
 
 jobs:
   build-and-test:
