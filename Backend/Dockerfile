@@ -1,8 +1,8 @@
 FROM php:8.5-fpm-alpine
 
-ARG USER_ID=1000
-ARG GROUP_ID=1000
-
+ARG USER_ID=1001
+ARG GROUP_ID=1001
+ 
 
 RUN apk add --no-cache \
     bash \
@@ -30,8 +30,14 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash \
 
 WORKDIR /var/www/html
 
-EXPOSE 8000
+
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
+EXPOSE 8000 
 
 USER metawatch
 
-CMD ["symfony", "server:start", "--port=8000", "--no-tls", "--allow-http", "--allow-all-ip"]
+CMD ["php-fpm"]

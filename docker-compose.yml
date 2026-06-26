@@ -13,9 +13,10 @@ services:
     ports:
       - "3309:3306" 
     environment:
-      MYSQL_USER: fabius
-      MYSQL_PASSWORD: lol
-      MYSQL_DATABASE: meta-watch
+      DATABASE_URL: ${DATABASE_URL}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
       MYSQL_ROOT_PASSWORD: db_password
     volumes:
       - database_data:/var/lib/mysql:rw
@@ -27,27 +28,28 @@ services:
     build:
       context: ./Backend
       args:
-        USER_ID: ${UID:-1000}
-        GROUP_ID: ${GID:-1000}
+        USER_ID: ${UID:-1001}
+        GROUP_ID: ${GID:-1001}
+    env_file:
+      - ./Backend/.env
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
     volumes: 
       - ./Backend:/var/www/html
     ports:
       - "8000:8000"
-    
 
   frontend:
     build:
       context: ./Frontend
       args:
-        USER_ID: ${UID:-1000}
-        GROUP_ID: ${GID:-1000}
+        USER_ID: ${UID:-1001}
+        GROUP_ID: ${GID:-1001}
     volumes:
       - ./Frontend:/app
       - /app/node_modules
     ports:
       - "3000:3000"
-    environment:
-      SYMFONY_DOTENV_VARS: "DATABASE_URL"
     
 volumes:
 

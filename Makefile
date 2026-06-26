@@ -14,8 +14,11 @@
 # Error handling:
 #   - Process stops immediately (native Make behavior)
 #   - Specific error message displayed for each command
-# ====================================================================
-
+# ===================================================================
+export DATABASE_URL
+export DB_USER
+export DB_PASSWORD
+export DB_NAME
 DOCKER_COMPOSE = docker compose -p meta-watch
 USER_ID = $(shell id -u)
 GROUP_ID = $(shell id -g)
@@ -49,16 +52,16 @@ help:
 	@echo " make clean      : Clean up caches and volumes"
 
 deploy:
-	$(DOCKER_COMPOSE) up -d --build || { echo "Erreur : La construction ou le démarrage des conteneurs a échoué. Vérifiez votre Dockerfile ou vos ports."; exit 1; }
+	
+	$(DOCKER_COMPOSE) up -d --build || { echo "Erreur de déploiement."; exit 1; }
 	@echo "Attente de MySQL..."
-	sleep 10
-	docker compose exec -u root backend mkdir -p /var/www/html/vendor
-	docker compose exec -u root backend chown -R 1000:1000 /var/www/html/vendor
-	docker compose exec -u 1000:1000 backend composer install --no-scripts
-	$(DOCKER_COMPOSE) exec -T backend git config --global --add safe.directory /var/www/html || { echo "Erreur : Impossible de configurer le répertoire Git comme sécurisé (safe.directory)."; exit 1; }
-	$(DOCKER_COMPOSE) exec -T backend composer install || { echo "Erreur : L'installation des dépendances PHP (Composer) a échoué. Vérifiez votre connexion réseau ou votre fichier composer.json."; exit 1; }
+	sleep 15
+	$(DOCKER_COMPOSE) exec -T backend git config --global --add safe.directory /var/www/html || echo "Git deja configure"
+	@echo "--- DIAGNOSTIC SYSTEME ---"
+	$(DOCKER_COMPOSE) exec -T backend sh -c "mkdir -p /var/www/html/vendor && echo 'SUCCESS' || (echo 'ECHEC: ' && ls -ld /var/www/html && id)"
+	$(DOCKER_COMPOSE) exec -T -u metawatch backend composer install --no-interaction --prefer-dist --no-progress --no-scripts || { echo "Erreur : L'installation des dépendances PHP (Composer) a échoué."; exit 1; }
 	$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:database:create --if-not-exists
-	$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:migrations:sync-metadata-storage || { echo "Erreur : Échec de la synchronisation des métadonnées de la base de données. Vérifiez vos entités."; exit 1; }
+	$(DOCKER_COMPOSE) exec -T -e DATABASE_URL='$(DATABASE_URL)' backend php bin/console doctrine:migrations:migrate --no-interaction
 	@echo "Project ready !" 
 
 build:
