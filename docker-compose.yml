@@ -13,6 +13,7 @@ services:
     ports:
       - "3309:3306" 
     environment:
+      DATABASE_URL: ${DATABASE_URL}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
@@ -29,6 +30,8 @@ services:
       args:
         USER_ID: ${UID:-1001}
         GROUP_ID: ${GID:-1001}
+    env_file:
+      - ./Backend/.env.local
     environment:
       DATABASE_URL: ${DATABASE_URL}
     volumes: 

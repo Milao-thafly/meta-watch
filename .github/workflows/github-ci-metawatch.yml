@@ -32,13 +32,16 @@ jobs:
 
           
       
-      - name: Run Deploy
+      - name: Run Deploy 
+      
         env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: |
-          DATABASE_URL="${DATABASE_URL}" docker compose -p meta-watch up -d --build
-          
-          DATABASE_URL="${DATABASE_URL}" make deploy
+          UID: 1001
+          GID: 1001
+        run:  DATABASE_URL="${DATABASE_URL}" make deploy
 
       - name: Debug files before deploy
         run: |
