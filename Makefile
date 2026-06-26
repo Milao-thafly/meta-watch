@@ -15,10 +15,7 @@
 #   - Process stops immediately (native Make behavior)
 #   - Specific error message displayed for each command
 # ===================================================================
-export DATABASE_URL
-export DB_USER
-export DB_PASSWORD
-export DB_NAME
+
 DOCKER_COMPOSE = docker compose -p meta-watch
 USER_ID = $(shell id -u)
 GROUP_ID = $(shell id -g)
