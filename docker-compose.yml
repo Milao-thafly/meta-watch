@@ -32,8 +32,6 @@ services:
         GROUP_ID: ${GID:-1001}
     volumes: 
       - ./Backend:/var/www/html
-    env_file:
-      - ./Backend/.env.local
     ports:
       - "8000:8000"
 
