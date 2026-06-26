@@ -1,7 +1,7 @@
 FROM node:25-alpine3.23
 
-ARG USER_ID=1000
-ARG GROUP_ID=1000
+ARG USER_ID=1001
+ARG GROUP_ID=1001
 
 RUN deluser node || true && \
     delgroup node || true
