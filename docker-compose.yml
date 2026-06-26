@@ -30,8 +30,6 @@ services:
       args:
         USER_ID: ${UID:-1001}
         GROUP_ID: ${GID:-1001}
-    env_file:
-      - ./Backend/.env
     environment:
       DATABASE_URL: ${DATABASE_URL}
     volumes: 
