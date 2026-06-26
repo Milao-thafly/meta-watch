@@ -40,4 +40,4 @@ EXPOSE 8000
 
 USER metawatch
 
-CMD ["symfony", "server:start", "--port=8000", "--no-tls", "--allow-http", "--allow-all-ip"]
+CMD ["php-fpm"]
