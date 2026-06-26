@@ -12,12 +12,8 @@ services:
     image: mysql:8.0
     ports:
       - "3309:3306" 
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_ROOT_PASSWORD: db_password
+
+      
     volumes:
       - database_data:/var/lib/mysql:rw
       - /var/run/docker.sock:/var/run/docker.sock
@@ -30,8 +26,6 @@ services:
       args:
         USER_ID: ${UID:-1001}
         GROUP_ID: ${GID:-1001}
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
     volumes: 
       - ./Backend:/var/www/html
     ports:

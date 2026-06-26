@@ -1,0 +1,6 @@
+services:
+  backend:
+  
+    env_file:
+      - ./Backend/.env.local
+    
