@@ -64,8 +64,7 @@ deploy:
 	@echo "Project ready !" 
 
 deploy-preprod:
-	@if [ ! -f $(ENV_FILE) ]; then echo "ERREUR: Fichier .env.local introuvable à $(ENV_FILE)"; exit 1; fi
-	$(DOCKER_COMPOSE_PREPROD) up -d --build || { echo "Erreur de déploiement."; exit 1; }
+	$(DOCKER_COMPOSE) up -d --build || { echo "Erreur de déploiement."; exit 1; }
 	@echo "Attente de MySQL (Preprod)..."
 	sleep 15
 	$(DOCKER_COMPOSE_PREPROD) exec -T backend git config --global --add safe.directory /var/www/html
