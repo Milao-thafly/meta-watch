@@ -16,7 +16,7 @@
 #   - Specific error message displayed for each command
 # ===================================================================
 
-DOCKER_COMPOSE = docker compose -p meta-watch -f docker-compose.yml -f docker-compose.override.yml
+DOCKER_COMPOSE = docker compose -p meta-watch -f docker-compose.yml
 DOCKER_COMPOSE_PREPROD = docker compose -p meta-watch
 USER_ID = $(shell id -u)
 GROUP_ID = $(shell id -g)
