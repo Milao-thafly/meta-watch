@@ -51,7 +51,6 @@ help:
 	@echo " make clean      : Clean up caches and volumes"
 
 deploy:
-	@if [ ! -f $(ENV_FILE) ]; then echo "ERREUR: Fichier .env.local introuvable à $(ENV_FILE)"; exit 1; fi
 	$(DOCKER_COMPOSE) up -d --build || { echo "Erreur de déploiement."; exit 1; }
 	@echo "Attente de MySQL..."
 	sleep 15
