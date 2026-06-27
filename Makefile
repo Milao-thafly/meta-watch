@@ -16,7 +16,9 @@
 #   - Specific error message displayed for each command
 # ===================================================================
 
-DOCKER_COMPOSE = docker compose -p meta-watch
+ENV_FILE = $(CURDIR)/Backend/.env.local
+DOCKER_COMPOSE = docker compose -p meta-watch --env-file $(ENV_FILE) -f docker-compose.yml -f docker-compose.override.yml
+DOCKER_COMPOSE_PREPROD = docker compose -p meta-watch --env-file $(ENV_FILE)
 USER_ID = $(shell id -u)
 GROUP_ID = $(shell id -g)
 
@@ -49,17 +51,28 @@ help:
 	@echo " make clean      : Clean up caches and volumes"
 
 deploy:
-	
+	@if [ ! -f $(ENV_FILE) ]; then echo "ERREUR: Fichier .env.local introuvable à $(ENV_FILE)"; exit 1; fi
 	$(DOCKER_COMPOSE) up -d --build || { echo "Erreur de déploiement."; exit 1; }
 	@echo "Attente de MySQL..."
 	sleep 15
-	$(DOCKER_COMPOSE) exec -T backend git config --global --add safe.directory /var/www/html || echo "Git deja configure"
+	$(DOCKER_COMPOSE) exec -T backend git config --global --add safe.directory /var/www/html
 	@echo "--- DIAGNOSTIC SYSTEME ---"
 	$(DOCKER_COMPOSE) exec -T backend sh -c "mkdir -p /var/www/html/vendor && echo 'SUCCESS' || (echo 'ECHEC: ' && ls -ld /var/www/html && id)"
-	$(DOCKER_COMPOSE) exec -T -u metawatch backend composer install --no-interaction --prefer-dist --no-progress --no-scripts || { echo "Erreur : L'installation des dépendances PHP (Composer) a échoué."; exit 1; }
+	$(DOCKER_COMPOSE) exec -T -u metawatch backend composer install --no-interaction --prefer-dist
 	$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:database:create --if-not-exists
-	$(DOCKER_COMPOSE) exec -T -e DATABASE_URL='$(DATABASE_URL)' backend php bin/console doctrine:migrations:migrate --no-interaction
+	$(DOCKER_COMPOSE) exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
 	@echo "Project ready !" 
+
+deploy-preprod:
+	@if [ ! -f $(ENV_FILE) ]; then echo "ERREUR: Fichier .env.local introuvable à $(ENV_FILE)"; exit 1; fi
+	$(DOCKER_COMPOSE_PREPROD) up -d --build || { echo "Erreur de déploiement."; exit 1; }
+	@echo "Attente de MySQL (Preprod)..."
+	sleep 15
+	$(DOCKER_COMPOSE_PREPROD) exec -T backend git config --global --add safe.directory /var/www/html
+	$(DOCKER_COMPOSE_PREPROD) exec -T -u metawatch backend composer install --no-interaction --prefer-dist
+	$(DOCKER_COMPOSE_PREPROD) exec -T backend php bin/console doctrine:database:create --if-not-exists
+	$(DOCKER_COMPOSE_PREPROD) exec -T backend php bin/console doctrine:migrations:migrate --no-interaction
+	@echo "Project ready (Preprod)!"
 
 build:
 	$(DOCKER_COMPOSE) up -d --build
